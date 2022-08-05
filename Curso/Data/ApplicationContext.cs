@@ -1,11 +1,13 @@
 using CursoEFCore.Data.Configurations;
 using CursoEFCore.Domain;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace CursoEFCore.Data
 {
     public class ApplicationContext : DbContext
     {
+        private static readonly ILoggerFactory _logger = LoggerFactory.Create(p => p.AddConsole());
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<PedidoItem> PedidoItems { get; set; }
