@@ -95,8 +95,36 @@ static void ConsultarPedidoCarregamentoAdiantado()
     Console.WriteLine(pedidos.Count);
 }
 
+static void AtualizarDados()
+{
+    using var db = new ApplicationContext();
+    var cliente = db.Clientes.Find(1);
+    cliente.Nome = "Cliente Alterado Passo 2";
+    // var clienteAtualizado = new Cliente
+    // {
+    //     Id = 1,
+    //     Nome = "Cliente Alterado Passo 2",
+    //     C
+    // };
+    // db.Clientes.Update(cliente);
+    // db.Entry(cliente).CurrentValues.SetValues(clienteAtualizado);
+    db.SaveChanges();
+}
+
+static void RemoverRegistro()
+{
+    using var db = new ApplicationContext();
+    var cliente = db.Clientes.Find(1);
+    db.Clientes.Remove(cliente);
+    //db.Remove(cliente);
+    //db.Entry(cliente).State = EntityState.Deleted;
+    db.SaveChanges();
+}
+
 // InserirDados();
 // InserirDadosEmMassa();
 // ConsultarDados();
 // CadastrarPedido();
-ConsultarPedidoCarregamentoAdiantado();
+// ConsultarPedidoCarregamentoAdiantado();
+// AtualizarDados();
+RemoverRegistro();
